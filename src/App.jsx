@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import logo from "./assets/logo.png";
+import chat from "./assets/chat.svg"
 
 function App() {
   const [question, setQuestion] = useState("");
   const [conversation, setConversation] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isChatVisible, setIsChatVisible] = useState(false);
-  const [isWelcomeVisible, setIsWelcomeVisible] = useState(false); 
+  const [isWelcomeVisible, setIsWelcomeVisible] = useState(false);
   async function generateAnswer() {
     if (!question.trim()) {
       return;
@@ -23,8 +24,7 @@ function App() {
 
     try {
       const response = await axios({
-        // {bro Enter your api key after = in the url }
-        url: "https://generativelanguage.googleapis.com/v1beta2/models/text-bison-001:generateText?key=",
+        url: "https://generativelanguage.googleapis.com/v1beta2/models/text-bison-001:generateText?key=AIzaSyAdpICQWMprY1dUlh1E1Fy2rqVk0tbi-v4",
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -76,19 +76,21 @@ function App() {
       {/* Toggle Button */}
       <button
         onClick={handleToggleChat}
-        className="fixed bottom-4 right-4 p-4 bg-green-700 text-white rounded-full shadow-lg hover:bg-green-800 transition duration-300"
+        className="fixed bottom-4 right-4 p-4 bg-white text-white rounded-full shadow-lg hover:bg-blue-800 transition duration-300"
       >
-        {isChatVisible ? "Close Chat" : "Open Chat"}
+       
+        <img src={chat} alt="" className="w-5" />
+
       </button>
 
       {/* Chat Container */}
       {isChatVisible && (
         <div className="absolute bottom-0 right-0 m-4 flex flex-col w-full max-w-md bg-white rounded-lg shadow-md">
-          <header className="flex items-center justify-center p-4 bg-green-700 rounded-t-lg">
+          <header className="flex items-center justify-center p-4 bg-blue-700 rounded-t-lg">
             <img
               src={logo}
               alt="Logo"
-              className="h-16 w-16 rounded-full border-2 border-green-700 mr-3"
+              className="h-16 w-16 rounded-full border-2 border-blue-700 mr-3"
             />
             <h1 className="text-2xl font-bold text-white">THE CHAT-BOT</h1>
           </header>
@@ -103,7 +105,7 @@ function App() {
                 key={index}
                 className={`mb-2 p-3 rounded-lg flex items-start ${
                   msg.type === "user"
-                    ? "bg-green-100 text-gray-800"
+                    ? "bg-blue-100 text-gray-800"
                     : "bg-gray-200 text-gray-800"
                 }`}
               >
@@ -128,13 +130,13 @@ function App() {
               type="text"
               value={question}
               placeholder="Type your question here..."
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-md focus:outline-none focus:border-green-500 bg-gray-100"
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-md focus:outline-none focus:border-blue-500 bg-gray-100"
               onChange={(e) => setQuestion(e.target.value)}
               onKeyDown={handleKeyDown}
             />
             <button
               onClick={generateAnswer}
-              className="w-full mt-2 py-3 px-4 bg-green-700 text-white rounded-md hover:bg-green-800 transition duration-300 font-semibold"
+              className="w-full mt-2 py-3 px-4 bg-blue-700 text-white rounded-md hover:bg-blue-800 transition duration-300 font-semibold"
               disabled={loading}
             >
               Generate Answer
