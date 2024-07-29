@@ -23,8 +23,8 @@ function App() {
 
     try {
       const response = await axios({
-        // {bro api key}
-        url: "https://generativelanguage.googleapis.com/v1beta2/models/text-bison-001:generateText?key=change,
+        // {bro enter your api key after = symbol}
+        url: "https://generativelanguage.googleapis.com/v1beta2/models/text-bison-001:generateText?key=,
         method: "post",
         headers: {
           "Content-Type": "application/json",
