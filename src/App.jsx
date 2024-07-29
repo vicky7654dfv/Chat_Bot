@@ -7,17 +7,13 @@ function App() {
   const [conversation, setConversation] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isChatVisible, setIsChatVisible] = useState(false);
-  const [isWelcomeVisible, setIsWelcomeVisible] = useState(false); // Manage welcome message visibility
-
+  const [isWelcomeVisible, setIsWelcomeVisible] = useState(false); 
   async function generateAnswer() {
     if (!question.trim()) {
       return;
     }
-
-    // Add user's question to the conversation
     setConversation((prev) => [...prev, { type: "user", text: question }]);
 
-    // Hide the welcome message after the first user input
     if (isWelcomeVisible) {
       setIsWelcomeVisible(false);
     }
@@ -27,7 +23,8 @@ function App() {
 
     try {
       const response = await axios({
-        url: "https://generativelanguage.googleapis.com/v1beta2/models/text-bison-001:generateText?key=",
+        // {bro api key}
+        url: "https://generativelanguage.googleapis.com/v1beta2/models/text-bison-001:generateText?key=change,
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +65,7 @@ function App() {
     setIsChatVisible((prev) => {
       const newVisibility = !prev;
       if (newVisibility) {
-        setIsWelcomeVisible(true); // Show welcome message when chat opens
+        setIsWelcomeVisible(true);
       }
       return newVisibility;
     });
